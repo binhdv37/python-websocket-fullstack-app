@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+ 
+<html lang="en">
+ 
+<head>
+ 
+    <meta charset="UTF-8">
+ 
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+ 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+    <title>WebSocker Client</title>
+ 
+</head>
+ 
+<body>
+
+    <button onclick="sendMessageToServer()">Send message to server</button>
+ 
+</body>
+ 
+<script>
+
+    function sendMessageToServer() {
+        socket.send('Html client send some shit!')
+    }
+ 
+    // Create WebSocket connection.
+const socket = new WebSocket('ws://localhost:7890');
+
+// Connection opened
+socket.addEventListener('open', function (event) {
+    socket.send('Html client say hello!');
+});
+
+// Listen for messages
+socket.addEventListener('message', function (event) {
+    console.log('Message from server ', event.data);
+});
+
+ 
+</script>
+ 
+</html>
